@@ -1,0 +1,5 @@
+---
+# dev config
+user: admin
+pass: passwordpassword
+api: http://graylog:9000/api/

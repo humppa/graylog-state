@@ -1,0 +1,46 @@
+# Compose file for graylog-state development
+# vim: set syntax=yaml :
+
+version: "2"
+
+networks:
+  default:
+
+services:
+  state:
+    build: .
+    volumes:
+    - .:/go
+    networks:
+    - default
+    entrypoint: sh -c 'while sleep 3600; do true; done'
+
+  mongo:
+    image: mongo:3
+    networks:
+    - default
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.10
+    networks:
+    - default
+    environment:
+    - "http.host=0.0.0.0"
+    - "network.host=0.0.0.0"
+    - "transport.host=localhost"
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    - "xpack.security.enabled=false"
+
+  graylog:
+    image: graylog/graylog:3.0
+    depends_on:
+    - elasticsearch
+    - mongo
+    networks:
+    - default
+    ports:
+    - "9000:9000"
+    environment:
+    - GRAYLOG_PASSWORD_SECRET=passwordpassword
+    - GRAYLOG_ROOT_PASSWORD_SHA2=2e2b24f8ee40bb847fe85bb23336a39ef5948e6b49d897419ced68766b16967a
+    - GRAYLOG_WEB_ENDPOINT_URI=http://127.0.0.1:9000/api
