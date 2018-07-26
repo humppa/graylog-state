@@ -1,0 +1,8 @@
+---
+inputs:
+- title: An input
+  type: org.graylog2.inputs.syslog.udp.SyslogUDPInput
+  global: true
+  configuration:
+    bind_address: 0.0.0.0
+    port: 4514

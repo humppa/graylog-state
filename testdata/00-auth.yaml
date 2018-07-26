@@ -1,0 +1,5 @@
+---
+api:
+  user: admin
+  pass: passwordpassword
+  url: http://graylog:9000/api/
