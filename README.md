@@ -20,3 +20,7 @@ In the container, first fetch any dependencies and then run or build the program
     $ go get gopkg.in/yaml.v2
     ...
     $ CGO_ENABLED=0 go build -a -ldflags "-s -w" graylog-state.go
+
+## License
+
+[ISC](LICENSE)
