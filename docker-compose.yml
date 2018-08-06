@@ -32,7 +32,7 @@ services:
     - "xpack.security.enabled=false"
 
   graylog:
-    image: graylog/graylog:3.0
+    image: graylog/graylog:2.4
     depends_on:
     - elasticsearch
     - mongo
@@ -43,4 +43,4 @@ services:
     environment:
     - GRAYLOG_PASSWORD_SECRET=passwordpassword
     - GRAYLOG_ROOT_PASSWORD_SHA2=2e2b24f8ee40bb847fe85bb23336a39ef5948e6b49d897419ced68766b16967a
-    - GRAYLOG_WEB_ENDPOINT_URI=http://127.0.0.1:9000/api
+    - GRAYLOG_WEB_ENDPOINT_URI=http://localhost:9000/api
